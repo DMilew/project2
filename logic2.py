@@ -34,7 +34,7 @@ class Logic(QMainWindow, Ui_MainWindow):
                 if char.isdigit():
                     self.name_error.setText('No digits allowed')
                     return False
-                elif not char.isalpha():
+                elif not char.strip().replace(' ', '').isalpha():
                     self.name_error.setText('No special characters allowed')
                     return False
             self.name_error.setText('')
