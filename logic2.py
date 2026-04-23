@@ -36,7 +36,7 @@ class Logic(QMainWindow, Ui_MainWindow):
             return False
         #below line was suggested by AI to catch final logic misses
         elif '--' in name or "''" in name or "-'" in name or "'-" in name:
-            self.name_error.setText('Invalid characters at start or end of name')
+            self.name_error.setText('Invalid character order')
             return False
         else:
             for char in name:
