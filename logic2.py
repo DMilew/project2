@@ -26,19 +26,29 @@ class Logic(QMainWindow, Ui_MainWindow):
         and that there are no numbers
         It then calls the check_date function
         '''
-        if self.entry_name.text().strip() == '':
+        #AI was used to test for additional logic misses, code itself
+        name = self.entry_name.text().strip()
+        if name == '':
             self.name_error.setText('Please enter a name')
             return False
+        elif name[0] in "'-" or name[-1] in "'-":
+            self.name_error.setText('Invalid character order')
+            return False
+        #below line was suggested by AI to catch final logic misses
+        elif '--' in name or "''" in name or "-'" in name or "'-" in name:
+            self.name_error.setText('Invalid characters at start or end of name')
+            return False
         else:
-            for char in self.entry_name.text():
+            for char in name:
                 if char.isdigit():
                     self.name_error.setText('No digits allowed')
                     return False
-                elif not char.strip().replace(' ', '').isalpha():
+                elif not (char.isalpha() or char.isspace() or char in "-'"):
                     self.name_error.setText('No special characters allowed')
                     return False
             self.name_error.setText('')
             return True
+
     def check_date(self):
         '''
         This function checks if the date is entered in appropriate format
