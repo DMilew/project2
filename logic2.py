@@ -34,6 +34,9 @@ class Logic(QMainWindow, Ui_MainWindow):
                 if char.isdigit():
                     self.name_error.setText('No digits allowed')
                     return False
+                elif not char.isalpha():
+                    self.name_error.setText('No special characters allowed')
+                    return False
             self.name_error.setText('')
             return True
     def check_date(self):
